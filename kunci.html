@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Picker - Tombol Copy HEX dan RGB</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            padding: 20px;
+            color: #333;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #2a2a3e;
+            margin-bottom: 10px;
+        }
+        
+        .theme-section {
+            margin-bottom: 40px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .theme-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .day-theme .theme-title {
+            color: #273b1f;
+        }
+        
+        .night-theme .theme-title {
+            color: #96a8e0;
+        }
+        
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .color-card {
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .color-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .color-preview {
+            height: 100px;
+            width: 100%;
+        }
+        
+        .color-info {
+            padding: 12px;
+            background-color: white;
+        }
+        
+        .color-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .color-code {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .copy-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .copy-btn {
+            flex: 1;
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        
+        .copy-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .copy-btn:active {
+            transform: scale(0.98);
+        }
+        
+        .copy-hex {
+            background-color: #96a8e0;
+            color: white;
+        }
+        
+        .copy-hex:hover {
+            background-color: #7d94d9;
+        }
+        
+        .copy-rgb {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        
+        .copy-rgb:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background-color: #4b3420;
+            color: white;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            opacity: 1;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #666;
+            font-size: 14px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (max-width: 600px) {
+            .color-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Color Picker Demo</h1>
+            <p>Klik tombol copy HEX atau RGB pada setiap kartu warna</p>
+        </header>
+        
+        <div class="theme-section day-theme">
+            <h2 class="theme-title">Day Colors</h2>
+            <div class="color-grid" id="day-colors">
+                <!-- Day colors will be inserted here by JavaScript -->
+            </div>
+        </div>
+        
+        <div class="theme-section night-theme">
+            <h2 class="theme-title">Night Colors</h2>
+            <div class="color-grid" id="night-colors">
+                <!-- Night colors will be inserted here by JavaScript -->
+            </div>
+        </div>
+        
+        <footer>
+            <p>Klik tombol copy pada setiap kartu warna untuk menyalin kode warna ke clipboard</p>
+        </footer>
+    </div>
+    
+    <div class="notification" id="notification">Kode warna disalin!</div>
+    
+    <script>
+        // Data warna
+        const colorData = {
+            day: [
+                { name: "Soft Pink", hex: "#f9c7c4", rgb: "249, 199, 196" },
+                { name: "Light Green", hex: "#adca6d", rgb: "173, 202, 109" },
+                { name: "Vibrant Pink", hex: "#ec4899", rgb: "236, 72, 153" },
+                { name: "Brown", hex: "#a47948", rgb: "164, 121, 72" },
+                { name: "Dark Brown", hex: "#4b3420", rgb: "75, 52, 32" },
+                { name: "Dark Green", hex: "#273b1f", rgb: "39, 59, 31" }
+            ],
+            night: [
+                { name: "Dark Blue", hex: "#1a1a2e", rgb: "26, 26, 46" },
+                { name: "Dark Purple", hex: "#3a3a4e", rgb: "58, 58, 78" },
+                { name: "Light Blue", hex: "#96a8e0", rgb: "150, 168, 224" },
+                { name: "Purple", hex: "#bb86fc", rgb: "187, 134, 252" },
+                { name: "Pink", hex: "#ff8ab1", rgb: "255, 138, 177" },
+                { name: "Yellow", hex: "#f4d35e", rgb: "244, 211, 94" }
+            ]
+        };
+
+        // Fungsi untuk membuat kartu warna
+        function createColorCard(color, theme) {
+            const card = document.createElement('div');
+            card.className = 'color-card';
+            
+            card.innerHTML = `
+                <div class="color-preview" style="background-color: ${color.hex};"></div>
+                <div class="color-info">
+                    <div class="color-name">${color.name}</div>
+                    <div class="color-code">${color.hex}</div>
+                    <div class="color-code">RGB: ${color.rgb}</div>
+                    <div class="copy-buttons">
+                        <button class="copy-btn copy-hex" data-hex="${color.hex}">Copy HEX</button>
+                        <button class="copy-btn copy-rgb" data-rgb="${color.rgb}">Copy RGB</button>
+                    </div>
+                </div>
+            `;
+            
+            // Tambahkan event listener untuk tombol copy HEX
+            const hexBtn = card.querySelector('.copy-hex');
+            hexBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                copyToClipboard(color.hex, `HEX: ${color.hex} disalin!`);
+            });
+            
+            // Tambahkan event listener untuk tombol copy RGB
+            const rgbBtn = card.querySelector('.copy-rgb');
+            rgbBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                copyToClipboard(`rgb(${color.rgb})`, `RGB: ${color.rgb} disalin!`);
+            });
+            
+            return card;
+        }
+
+        // Fungsi untuk menyalin teks ke clipboard
+        function copyToClipboard(text, message) {
+            // Menggunakan Clipboard API
+            navigator.clipboard.writeText(text).then(function() {
+                showNotification(message);
+            }).catch(function(err) {
+                // Fallback untuk browser yang tidak mendukung Clipboard API
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showNotification(message);
+            });
+        }
+
+        // Fungsi untuk menampilkan notifikasi
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(function() {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Inisialisasi aplikasi
+        document.addEventListener('DOMContentLoaded', function() {
+            const dayGrid = document.getElementById('day-colors');
+            const nightGrid = document.getElementById('night-colors');
+            
+            // Tambahkan warna day
+            colorData.day.forEach(color => {
+                dayGrid.appendChild(createColorCard(color, 'day'));
+            });
+            
+            // Tambahkan warna night
+            colorData.night.forEach(color => {
+                nightGrid.appendChild(createColorCard(color, 'night'));
+            });
+        });
+    </script>
+</body>
+</html>

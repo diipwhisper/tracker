@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Elaravoid's Page - Password Access</title>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    
+    <link rel="stylesheet" href="landing.css">
+</head>
+<body>
+    <div class="password-container">
+        <h1 class="password-title">Access Required</h1>
+        <div class="password-subtitle">Enter the secret password to continue</div>
+
+        <div class="password-input-container">
+            <input type="password" id="passwordInput" class="password-input" placeholder="Enter password here"
+                autocomplete="off">
+            <button type="button" class="toggle-password" id="togglePassword">
+                <div class="eye-icons">
+                    <img src="https://cdn-icons-png.flaticon.com/512/565/565654.png" alt="Mata terbuka"
+                        class="eye-open">
+                    <img src="https://cdn-icons-png.flaticon.com/512/565/565655.png" alt="Mata tertutup"
+                        class="eye-closed" style="opacity: 0;">
+                </div>
+            </button>
+        </div>
+        <button class="password-button" id="submitButton">ACCESS</button>
+
+        <div class="password-message" id="message"></div>
+    </div>
+
+    <script src="landing.js"></script>
+</body>
+</html>

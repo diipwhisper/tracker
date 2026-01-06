@@ -1,0 +1,91 @@
+{
+  "events": {
+    "2026-0": [
+      { "date": 1, "title": "Tahun Baru", "type": "holiday" },
+      { "date": 5, "title": "Rapat Tim", "type": "regular" },
+      { "date": 10, "title": "Ulang Tahun Teman", "type": "regular" },
+      { "date": 15, "title": "Libur Nasional", "type": "holiday" },
+      { "date": 20, "title": "Presentasi Proyek", "type": "regular" },
+      { "date": 25, "title": "Hari Raya", "type": "holiday" },
+      { "date": 30, "title": "Meeting Client", "type": "regular" }
+    ],
+    "2026-1": [
+      { "date": 1, "title": "Kickoff Proyek", "type": "regular" },
+      { "date": 10, "title": "Libur Imlek", "type": "holiday" },
+      { "date": 14, "title": "Valentine's Day", "type": "regular" },
+      { "date": 20, "title": "Seminar Teknis", "type": "regular" },
+      { "date": 28, "title": "Deadline Laporan", "type": "regular" }
+    ],
+    "2026-2": [
+      { "date": 3, "title": "Hari Raya Nyepi", "type": "holiday" },
+      { "date": 10, "title": "Workshop", "type": "regular" },
+      { "date": 17, "title": "Ulang Tahun", "type": "regular" },
+      { "date": 23, "title": "Libur Nasional", "type": "holiday" },
+      { "date": 30, "title": "Presentasi Akhir", "type": "regular" }
+    ],
+    "2026-3": [
+      { "date": 5, "title": "Libur Wafat Isa Almasih", "type": "holiday" },
+      { "date": 12, "title": "Rapat Evaluasi", "type": "regular" },
+      { "date": 18, "title": "Hari Paskah", "type": "holiday" },
+      { "date": 22, "title": "Earth Day", "type": "regular" },
+      { "date": 28, "title": "Training", "type": "regular" }
+    ],
+    "2026-4": [
+      { "date": 1, "title": "Hari Buruh", "type": "holiday" },
+      { "date": 10, "title": "Hari Raya Idul Fitri", "type": "holiday" },
+      { "date": 15, "title": "Meeting Department", "type": "regular" },
+      { "date": 20, "title": "Hari Kebangkitan Nasional", "type": "regular" },
+      { "date": 25, "title": "Libur Kenaikan Isa Almasih", "type": "holiday" },
+      { "date": 30, "title": "Workshop", "type": "regular" }
+    ],
+    "2026-5": [
+      { "date": 1, "title": "Hari Lahir Pancasila", "type": "holiday" },
+      { "date": 8, "title": "Rapat Strategi", "type": "regular" },
+      { "date": 15, "title": "Libur Idul Adha", "type": "holiday" },
+      { "date": 22, "title": "Seminar", "type": "regular" },
+      { "date": 30, "title": "Evaluasi Bulanan", "type": "regular" }
+    ],
+    "2026-6": [
+      { "date": 5, "title": "Libur Tahun Baru Islam", "type": "holiday" },
+      { "date": 12, "title": "Team Building", "type": "regular" },
+      { "date": 17, "title": "Hari Kemerdekaan?", "type": "regular" },
+      { "date": 23, "title": "Meeting Klien", "type": "regular" },
+      { "date": 30, "title": "Workshop", "type": "regular" }
+    ],
+    "2026-7": [
+      { "date": 1, "title": "Libur Nasional", "type": "holiday" },
+      { "date": 10, "title": "Rapat Tim", "type": "regular" },
+      { "date": 17, "title": "Hari Kemerdekaan", "type": "holiday" },
+      { "date": 24, "title": "Presentasi", "type": "regular" },
+      { "date": 30, "title": "Deadline Proyek", "type": "regular" }
+    ],
+    "2026-8": [
+      { "date": 5, "title": "Libur Maulid Nabi", "type": "holiday" },
+      { "date": 12, "title": "Training", "type": "regular" },
+      { "date": 18, "title": "Ulang Tahun Perusahaan", "type": "regular" },
+      { "date": 25, "title": "Meeting Review", "type": "regular" }
+    ],
+    "2026-9": [
+      { "date": 2, "title": "Libur Nasional", "type": "holiday" },
+      { "date": 10, "title": "Workshop Teknologi", "type": "regular" },
+      { "date": 15, "title": "Rapat Koordinasi", "type": "regular" },
+      { "date": 22, "title": "Seminar", "type": "regular" },
+      { "date": 30, "title": "Evaluasi", "type": "regular" }
+    ],
+    "2026-10": [
+      { "date": 1, "title": "Libur Nasional", "type": "holiday" },
+      { "date": 10, "title": "Hari Pahlawan", "type": "regular" },
+      { "date": 15, "title": "Presentasi", "type": "regular" },
+      { "date": 20, "title": "Rapat Akhir Tahun", "type": "regular" },
+      { "date": 25, "title": "Thanksgiving", "type": "regular" }
+    ],
+    "2026-11": [
+      { "date": 1, "title": "Meeting Planning", "type": "regular" },
+      { "date": 10, "title": "Libur Natal", "type": "holiday" },
+      { "date": 15, "title": "Party Kantor", "type": "regular" },
+      { "date": 20, "title": "Libur Natal", "type": "holiday" },
+      { "date": 25, "title": "Hari Natal", "type": "holiday" },
+      { "date": 31, "title": "Malam Tahun Baru", "type": "regular" }
+    ]
+  }
+}

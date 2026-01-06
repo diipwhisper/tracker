@@ -1,0 +1,183 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "KiwiSoda";
+    src: url("/font/KiwiSoda.ttf") format("truetype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "CutoutPaper";
+    src: url("/font/CutoutPaper.ttf") format("truetype");
+    font-display: swap;
+}
+
+body {
+    margin: 0;
+    padding: 0px;
+    font-family: "Courier New", Courier, monospace;
+    background-color: white;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.password-container {
+    width: 45%;
+    height: 50%;
+    padding: 0px;
+    border: 2px dotted black;
+    background: linear-gradient(180deg, #fff57f, white, #fff57f);
+    text-align: center;
+}
+
+.password-title {
+    font-family: 'KiwiSoda';
+    color: #ff6789;
+    font-size: 45px;
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 3px 1px 0 black;
+    margin-bottom: 30px;
+}
+
+.password-subtitle {
+    font-family: 'CutoutPaper';
+    color: #7FC2EC;
+    font-size: 29px;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 0 black;
+}
+
+.password-input-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.password-input {
+    width: 80%;
+    padding: 15px;
+    margin: 0 45px;
+    font-family: 'CutoutPaper';
+    font-size: 20px;
+    border: 2px solid black;
+    background-color: white;
+    color: #888;
+    text-align: center;
+    letter-spacing: 2px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.password-input:focus {
+    box-shadow: 4px 4px 0px #FFA4B3;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 70px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggle-password img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+}
+
+.eye-open,
+.eye-closed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.password-button {
+    background: linear-gradient(90deg, #FFA4B3, white, #FFA4B3);
+    border: 2px solid black;
+    color: #ff6789;
+    font-family: 'CutoutPaper';
+    font-size: 24px;
+    padding: 10px 0px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 0 45px;
+    width: 80%;
+    text-shadow: 1px 1px 0 black;
+}
+
+.password-button:hover {
+    background: linear-gradient(90deg, #7FC2EC, white, #7FC2EC);
+    color: #7FC2EC;
+    box-shadow: 4px 4px 0px #FFA4B3;
+}
+
+.password-button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.password-message {
+    font-family: 'KiwiSoda';
+    font-size: 29px;
+    min-height: 25px;
+    width: auto;
+    margin: 50px auto 0 auto;
+    padding: 10px;
+    border-radius: 0px;
+    text-align: center;
+}
+
+.password-message.success {
+    color: #7FC2EC;
+    background-color: rgb(127, 194, 236, 0.2);
+    border: 2px dotted #7FC2EC;
+}
+
+.password-message.error {
+    color: #ff6789;
+    background-color: rgba(255, 103, 137, 0.2);
+    border: 2px dotted #ff6789;
+}
+
+/* Animasi untuk pesan */
+@keyframes shake {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translateX(-5px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(5px);
+    }
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
