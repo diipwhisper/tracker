@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Elaravoid's Page - Password Access</title>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: "KiwiSoda";
+            src: url("/font/KiwiSoda.ttf") format("truetype");
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "CutoutPaper";
+            src: url("/font/CutoutPaper.ttf") format("truetype");
+            font-display: swap;
+        }
+
+        body {
+            margin: 0;
+            padding: 0px;
+            font-family: "Courier New", Courier, monospace;
+            background-color: white;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .password-container {
+            width: 45%;
+            height: 50%;
+            padding: 0px;
+            border: 2px dotted black;
+            background: linear-gradient(180deg, #fff57f, white, #fff57f);
+            text-align: center;
+        }
+
+        .password-title {
+            font-family: 'KiwiSoda';
+            color: #ff6789;
+            font-size: 45px;
+            text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 3px 1px 0 black;
+            margin-bottom: 30px;
+        }
+
+        .password-subtitle {
+            font-family: 'CutoutPaper';
+            color: #7FC2EC;
+            font-size: 29px;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 0 black;
+        }
+
+        .password-input-container {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .password-input {
+            width: 80%;
+            padding: 15px;
+            margin: 0 45px;
+            font-family: 'CutoutPaper';
+            font-size: 20px;
+            border: 2px solid black;
+            background-color: white;
+            color: #888;
+            text-align: center;
+            letter-spacing: 2px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .password-input:focus {
+            box-shadow: 4px 4px 0px #FFA4B3;
+        }
+
+        .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 70px;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .toggle-password img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: opacity 0.3s ease;
+        }
+
+        .eye-open,
+        .eye-closed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .password-button {
+            background: linear-gradient(90deg, #FFA4B3, white, #FFA4B3);
+            border: 2px solid black;
+            color: #ff6789;
+            font-family: 'CutoutPaper';
+            font-size: 24px;
+            padding: 10px 0px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin: 0 45px;
+            width: 80%;
+            text-shadow: 1px 1px 0 black;
+        }
+
+        .password-button:hover {
+            background: linear-gradient(90deg, #7FC2EC, white, #7FC2EC);
+            color: #7FC2EC;
+            box-shadow: 4px 4px 0px #FFA4B3;
+        }
+
+        .password-button:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        .password-message {
+            font-family: 'KiwiSoda';
+            font-size: 29px;
+            min-height: 25px;
+            width: auto;
+            margin: 50px auto 0 auto;
+            /* Ubah margin-top menjadi margin dengan auto di kiri/kanan */
+            padding: 10px;
+            border-radius: 0px;
+            text-align: center;
+            /* Pastikan teks juga rata tengah */
+        }
+
+        .password-message.success {
+            color: #7FC2EC;
+            background-color: rgb(127, 194, 236, 0.2);
+            border: 2px dotted #7FC2EC;
+        }
+
+        .password-message.error {
+            color: #ff6789;
+            background-color: rgba(255, 103, 137, 0.2);
+            border: 2px dotted #ff6789;
+        }
+
+        /* Animasi untuk pesan */
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+                transform: translateX(-5px);
+            }
+
+            20%,
+            40%,
+            60%,
+            80% {
+                transform: translateX(5px);
+            }
+        }
+
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="password-container">
+        <h1 class="password-title">Access Required</h1>
+        <div class="password-subtitle">Enter the secret password to continue</div>
+
+        <div class="password-input-container">
+            <input type="password" id="passwordInput" class="password-input" placeholder="Enter password here"
+                autocomplete="off">
+            <button type="button" class="toggle-password" id="togglePassword">
+                <div class="eye-icons">
+                    <img src="https://cdn-icons-png.flaticon.com/512/565/565654.png" alt="Mata terbuka"
+                        class="eye-open">
+                    <img src="https://cdn-icons-png.flaticon.com/512/565/565655.png" alt="Mata tertutup"
+                        class="eye-closed" style="opacity: 0;">
+                </div>
+            </button>
+        </div>
+        <button class="password-button" id="submitButton">ACCESS</button>
+
+        <div class="password-message" id="message"></div>
+    </div>
+
+    <script>
+        // Konfigurasi Firebase - GANTI DENGAN KONFIGURASI ANDA
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Inisialisasi Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Konstanta untuk Firestore collection
+        const PASSWORD_COLLECTION = "passwords";
+        const ACTIVE_PASSWORD_DOC = "active_password";
+        const ACCESS_LOGS_COLLECTION = "access_logs";
+
+        // Elemen DOM
+        const passwordInput = document.getElementById('passwordInput');
+        const togglePassword = document.getElementById('togglePassword');
+        const eyeOpen = document.querySelector('.eye-open');
+        const eyeClosed = document.querySelector('.eye-closed');
+        const submitButton = document.getElementById('submitButton');
+        const message = document.getElementById('message');
+
+        // State aplikasi
+        let correctPassword = "";
+        let isChecking = false;
+
+        // Toggle tampilan password
+        togglePassword.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+
+            if (type === 'password') {
+                eyeOpen.style.opacity = '1';
+                eyeClosed.style.opacity = '0';
+            } else {
+                eyeOpen.style.opacity = '0';
+                eyeClosed.style.opacity = '1';
+            }
+        });
+
+        // Ambil password dari Firestore saat halaman dimuat
+        async function fetchPasswordFromFirestore() {
+            try {
+                showMessage('Loading...', 'loading');
+                
+                const docRef = db.collection(PASSWORD_COLLECTION).doc(ACTIVE_PASSWORD_DOC);
+                const doc = await docRef.get();
+                
+                if (doc.exists) {
+                    const data = doc.data();
+                    correctPassword = data.password || "";
+                    
+                    if (correctPassword) {
+                        console.log("Password loaded from Firestore");
+                        showMessage('Ready to authenticate', 'success');
+                        setTimeout(() => {
+                            message.textContent = '';
+                            message.className = 'password-message';
+                        }, 1500);
+                    } else {
+                        showMessage('Password not set in database', 'error');
+                    }
+                } else {
+                    showMessage('No password configuration found', 'error');
+                    // Buat dokumen default jika tidak ada
+                    await createDefaultPassword();
+                }
+            } catch (error) {
+                console.error("Error fetching password:", error);
+                showMessage('Error connecting to database', 'error');
+            }
+        }
+
+        // Buat password default jika dokumen tidak ada
+        async function createDefaultPassword() {
+            try {
+                const defaultPassword = "divanianurrosyda4578";
+                await db.collection(PASSWORD_COLLECTION).doc(ACTIVE_PASSWORD_DOC).set({
+                    password: defaultPassword,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                correctPassword = defaultPassword;
+                showMessage('Default password set', 'success');
+                setTimeout(() => {
+                    message.textContent = '';
+                    message.className = 'password-message';
+                }, 1500);
+            } catch (error) {
+                console.error("Error creating default password:", error);
+            }
+        }
+
+        // Fungsi untuk mencatat log akses
+        async function logAccessAttempt(enteredPassword, isSuccess, ipAddress = null) {
+            try {
+                await db.collection(ACCESS_LOGS_COLLECTION).add({
+                    enteredPassword: enteredPassword,
+                    isSuccess: isSuccess,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    userAgent: navigator.userAgent,
+                    ipAddress: ipAddress || await getIPAddress(),
+                    pageUrl: window.location.href
+                });
+            } catch (error) {
+                console.error("Error logging access attempt:", error);
+            }
+        }
+
+        // Fungsi untuk mendapatkan IP address
+        async function getIPAddress() {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                return data.ip;
+            } catch (error) {
+                return "Unknown";
+            }
+        }
+
+        // Fungsi untuk memeriksa password
+        async function checkPassword() {
+            if (isChecking) return;
+            
+            const enteredPassword = passwordInput.value.trim();
+
+            // Reset pesan
+            message.textContent = '';
+            message.className = 'password-message';
+
+            if (!enteredPassword) {
+                showMessage('Please enter a password', 'error');
+                passwordInput.classList.add('shake');
+                setTimeout(() => passwordInput.classList.remove('shake'), 500);
+                return;
+            }
+
+            if (!correctPassword) {
+                showMessage('System not ready. Please refresh.', 'error');
+                return;
+            }
+
+            isChecking = true;
+            submitButton.disabled = true;
+            submitButton.textContent = 'CHECKING...';
+            showMessage('<span class="spinner"></span> Verifying password...', 'loading');
+
+            try {
+                // Simulasi delay untuk UX
+                await new Promise(resolve => setTimeout(resolve, 1000));
+
+                if (enteredPassword === correctPassword) {
+                    // Catat log sukses
+                    await logAccessAttempt(enteredPassword, true);
+                    
+                    showMessage('✓ Password correct! Redirecting...', 'success');
+
+                    // Simpan status login di localStorage
+                    localStorage.setItem('elaravoid_authenticated', 'true');
+                    localStorage.setItem('elaravoid_auth_timestamp', Date.now());
+
+                    // Redirect ke halaman utama setelah 1.5 detik
+                    setTimeout(() => {
+                        window.location.href = '/';
+                    }, 1500);
+                } else {
+                    // Catat log gagal
+                    await logAccessAttempt(enteredPassword, false);
+                    
+                    showMessage('✗ Incorrect password. Try again.', 'error');
+                    passwordInput.classList.add('shake');
+                    setTimeout(() => passwordInput.classList.remove('shake'), 500);
+
+                    // Kosongkan input
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                }
+            } catch (error) {
+                console.error("Error during password check:", error);
+                showMessage('Error verifying password', 'error');
+            } finally {
+                isChecking = false;
+                submitButton.disabled = false;
+                submitButton.textContent = 'ACCESS';
+            }
+        }
+
+        // Fungsi untuk menampilkan pesan
+        function showMessage(text, type) {
+            message.innerHTML = text;
+            message.className = `password-message ${type}`;
+        }
+
+        // Event listener untuk tombol submit
+        submitButton.addEventListener('click', checkPassword);
+
+        // Event listener untuk tekan Enter
+        passwordInput.addEventListener('keypress', function (event) {
+            if (event.key === 'Enter' && !isChecking) {
+                checkPassword();
+            }
+        });
+
+        // Cek jika pengguna sudah login
+        function checkExistingAuth() {
+            const isAuthenticated = localStorage.getItem('elaravoid_authenticated');
+            const authTimestamp = localStorage.getItem('elaravoid_auth_timestamp');
+            
+            if (isAuthenticated === 'true' && authTimestamp) {
+                // Cek jika login masih valid (24 jam)
+                const timeDiff = Date.now() - parseInt(authTimestamp);
+                const hoursDiff = timeDiff / (1000 * 60 * 60);
+                
+                if (hoursDiff < 24) {
+                    // Redirect jika masih dalam 24 jam
+                    // window.location.href = '/';
+                } else {
+                    // Hapus auth yang expired
+                    localStorage.removeItem('elaravoid_authenticated');
+                    localStorage.removeItem('elaravoid_auth_timestamp');
+                }
+            }
+        }
+
+        // Inisialisasi aplikasi
+        async function initApp() {
+            // Cek auth terlebih dahulu
+            checkExistingAuth();
+            
+            // Fokus pada input
+            passwordInput.focus();
+            
+            // Ambil password dari Firestore
+            await fetchPasswordFromFirestore();
+        }
+
+        // Jalankan inisialisasi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Elaravoid's Page - Cheat Code</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: "KiwiSoda";
+            src: url("/font/KiwiSoda.ttf") format("truetype");
+            font-display: swap;
+        }
+
+
+        @font-face {
+            font-family: "CutoutPaper";
+            src: url("/font/CutoutPaper.ttf") format("truetype");
+            font-display: swap;
+        }
+
+        body {
+            margin: 0;
+            padding: 45px;
+            font-family: "Courier New", Courier, monospace;
+            background-color: white;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .seluruh {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: auto 1fr auto;
+            gap: 10px;
+            height: calc(100vh - 90px);
+        }
+
+        header {
+            grid-column: 1 / span 12;
+            grid-row: 1;
+            border: 2px dotted black;
+            background: #fff57f;
+            background-size: cover;
+        }
+
+        header h1 {
+            margin: 0;
+            font-family: 'KiwiSoda';
+            color: #ff6789;
+            font-weight: bold;
+            text-align: center;
+            font-size: 45px;
+            text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 3px 1px 0 black;
+            padding: 10px;
+        }
+
+
+        .container {
+            grid-column: 1 / span 12;
+            grid-row: 2;
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        footer {
+            grid-column: 1 / span 12;
+            grid-row: 3;
+            border: 2px dotted black;
+            background: #fff57f;
+            background-size: cover;
+        }
+
+        footer h1 {
+            margin: 0;
+            font-family: 'KiwiSoda';
+            color: #ff6789;
+            font-weight: bold;
+            text-align: center;
+            font-size: 30px;
+            text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 3px 1px 0 black;
+            padding: 10px;
+        }
+
+
+        .container-1 {
+            justify-content: center;
+            border: 2px dotted black;
+            padding: 20px 18px;
+            background: linear-gradient(180deg, #fff57f, white, #fff57f);
+        }
+
+        .folder-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            padding: 14px 0 0 0;
+            justify-items: center;
+            margin: 0 auto;
+        }
+
+        .folder {
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            width: 145px;
+            margin-bottom: 22px;
+        }
+
+        .folder:hover {
+            transform: scale(1.1);
+        }
+
+        .folder-icon {
+            position: relative;
+            width: 100%;
+            height: 90px;
+            border-radius: 0px 8px 8px 8px;
+            box-shadow: 4px 4px 0 rgb(255, 103, 137, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            border: 2px solid black;
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+        }
+
+        .folder-icon::before {
+            content: '';
+            position: absolute;
+            top: -19px;
+            left: -2px;
+            width: 40%;
+            height: 15px;
+            background: #7FC2EC;
+            border-radius: 8px 8px 0 0;
+            box-shadow: 4px 0px 0 rgb(255, 103, 137, 0.3);
+            border: 2px solid black;
+        }
+
+        .folder-icon a {
+            color: white;
+            font-family: 'KiwiSoda';
+            font-weight: bold;
+            font-size: 40px;
+            text-decoration: none;
+            text-shadow: 2px 2px 4px black;
+            padding: 5px;
+            border-radius: 4px;
+            z-index: 1;
+        }
+
+        .folder-thought {
+            background-image: url('https://i.pinimg.com/1200x/cb/07/85/cb0785531f79fe8d437a3810072d63bd.jpg');
+        }
+
+        .folder-habit {
+            background-image: url('https://i.pinimg.com/1200x/45/26/b5/4526b560d425fc39baa6b94249988643.jpg');
+        }
+
+        .folder-mood {
+            background-image: url('https://i.pinimg.com/736x/36/be/8b/36be8bd6ed2249f2723a9033a73c890d.jpg');
+        }
+
+        .folder-money {
+            background-image: url('https://i.pinimg.com/736x/ef/54/62/ef54624df3286abbbb587df399c34c77.jpg');
+        }
+
+        .folder-food {
+            background-image: url('https://i.pinimg.com/736x/0c/1c/86/0c1c865e07146a185943b722c67a8fa7.jpg');
+        }
+
+        .folder-sholat {
+            background-image: url('https://i.pinimg.com/736x/d8/f0/16/d8f01691840eee4bc6698e6c824476ea.jpg');
+        }
+
+        .folder-quran {
+            background-image: url('https://i.pinimg.com/736x/e7/1f/95/e71f951bf3dedd0c82a400a56624c577.jpg');
+        }
+
+        .folder-fasting {
+            background-image: url('https://i.pinimg.com/736x/ca/17/9c/ca179cbd5cb1ce05b914e78f5fb3f243.jpg');
+        }
+
+        .container-2 {
+            display: flex;
+            gap: 10px;
+        }
+
+        .calendar-masehi {
+            background: linear-gradient(180deg, #fff57f, white, #fff57f);
+            border: 2px dotted black;
+            padding: 15px;
+            min-width: 300px;
+            max-width: 350px;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            font-family: 'CutoutPaper';
+        }
+
+        .calendar-header h2 {
+            margin: 0;
+            color: #7FC2EC;
+            text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 3px 1px 0 black;
+            font-size: 28px;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .nav-button {
+            background: #ff6789;
+            border: 2px solid black;
+            color: black;
+            font-family: 'KiwiSoda';
+            font-size: 12px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .nav-button:hover {
+            background: white;
+            color: black;
+            transform: scale(1.05);
+        }
+
+        .calendar-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            margin-bottom: 0px;
+        }
+
+        .weekday {
+            text-align: center;
+            font-weight: bold;
+            font-size: 12px;
+            color: black;
+            padding: 0;
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 3px;
+        }
+
+        .day {
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 0px;
+            transition: all 0.2s ease;
+            background-color: white;
+            border: 1px solid black;
+            padding: 20px 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .day.sunday {
+            border: 1px solid #ff6789;
+            color: black;
+        }
+
+        .day.other-month {
+            color: #ccc;
+            background-color: #f9f9f9;
+            cursor: default;
+            border: 1px solid #ccc;
+        }
+
+        .day.other-month:hover {
+            transform: scale(1);
+            background-color: #f9f9f9;
+        }
+
+        .day.today {
+            background-color: #fff57f;
+            color: black;
+            font-weight: bold;
+            border: 1px dashed black;
+            text-decoration: underline;
+            border-radius: 50%;
+            padding-bottom: -2px !;
+        }
+
+        /* CSS untuk background event */
+        .day.has-holiday {
+            background-color: #FFA4B3 !important;
+            color: black;
+            border-color: #ff6789;
+        }
+
+        .day.has-regular {
+            background-color: #7FC2EC !important;
+            color: black;
+            border-color: #0088ff;
+        }
+
+        /* Pastikan hari Minggu tetap terlihat dengan background */
+        .day.sunday.has-holiday {
+            border: 1px solid #ff6789;
+            color: black;
+        }
+
+        .day.sunday.has-regular {
+            border: 1px solid #ff6789;
+            background-color: #7FC2EC !important;
+            color: black;
+            font-weight: normal;
+        }
+
+        /* Jika ada class today dengan background event */
+        .day.today.has-holiday {
+            background-color: #ff6789 !important;
+            color: white;
+            border: 2px dotted #ff6789;
+        }
+
+        .day.today.has-regular {
+            background-color: #0088ff !important;
+            color: white;
+            border: 2px dotted #0088ff;
+        }
+
+        .container-3 {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            height: 100%;
+            flex: 1;
+            min-width: 300px
+        }
+
+        .times {
+            background: linear-gradient(180deg, #fff57f, white, #fff57f);
+            border: 2px dotted black;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .widget {
+            background: linear-gradient(160deg, #FFA4B3, white, #FFA4B3);
+            border: 2px solid #ff6789;
+            border-radius: 50%;
+            padding: 10px 0 6px 0;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .event {
+            background: linear-gradient(180deg, #fff57f, white, #fff57f);
+            border: 2px dotted black;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            flex-grow: 1;
+            overflow-y: auto;
+            min-height: 0;
+        }
+
+        .event-title {
+            font-family: 'KiwiSoda';
+            font-size: 22px;
+            color: #ff6789;
+            text-shadow: 1px 1px 0 black;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .event-month {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .event-list {
+            width: 100%;
+        }
+
+        .event-item {
+            padding: 4px;
+            margin-bottom: 8px;
+            border: 1px solid black;
+            border-radius: 0px;
+            background-color: white;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .event-item.holiday {
+            background: linear-gradient(90deg, #FFA4B3, white);
+        }
+
+        .event-item.regular {
+            background: linear-gradient(90deg, #7FC2EC, white);
+        }
+
+        .event-date {
+            min-width: 30px;
+            text-align: center;
+            background-color: #fff57f;
+            padding: 2px;
+            border: 1px solid black;
+        }
+
+        .event-desc {
+            flex-grow: 1;
+        }
+
+        .event-type-badge {
+            display: none;
+        }
+
+        .no-events {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="seluruh">
+        <header>
+            <h1>Track My Life</h1>
+        </header>
+
+        <section class="container">
+            <div class="container-1">
+                <div class="folder-grid">
+                    <div class="folder">
+                        <div class="folder-icon folder-thought"><a href="/thought.html">Thought</a></div>
+                    </div>
+                    <div class="folder">
+                        <div class="folder-icon folder-mood"><a href="/mood.html">Mood</a></div>
+                    </div>
+                    <div class="folder">
+                        <div class="folder-icon folder-habit"><a href="/habit.html">Habit</a></div>
+                    </div>
+                    <div class="folder">
+                        <div class="folder-icon folder-money"><a href="/money.html">Money</a></div>
+                    </div>
+                    <div class="folder">
+                        <div class="folder-icon folder-food"><a href="/food.html">Food</a></div>
+                    </div>
+                    <div class="folder">
+                        <div class="folder-icon folder-sholat"><a href="/sholat.html">Sholat</a></div>
+                    </div>
+                    <div class="folder">
+                        <div class="folder-icon folder-quran"><a href="/quran.html">Quran</a></div>
+                    </div>
+                    <div class="folder">
+                        <div class="folder-icon folder-fasting"><a href="/fasting.html">Fasting</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-2">
+                <div class="calendar-masehi" id="calendar">
+                    <!-- Calendar akan diisi oleh JavaScript -->
+                </div>
+                <div class="calendar-hijriyah" id="calendar"></div>
+            </div>
+            <div class="container-3">
+                <div class="times">
+                    <div class="widget">
+                        <iframe
+                            src="https://free.timeanddate.com/clock/ia8dc2b3/n531/tlid38/fn12/tct/pct/ftb/tt0/td1/th1/ta1/tb4"
+                            frameborder="0" width="219" height="36" allowtransparency="true"></iframe>
+                    </div>
+                </div>
+                <div class="event" id="event-container">
+                    <!-- Semua event bulanan akan ditampilkan di sini -->
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <h1>@elaravoid - 2026</h1>
+        </footer>
+    </div>
+
+    <script>
+        let currentMonth = 0;
+        let currentYear = 0;
+        let selectedDate = null;
+        let eventsData = {}; // Variabel untuk menyimpan data dari tracker.json
+
+        function updateJakartaDateTime() {
+            const now = new Date();
+            const options = { timeZone: "Asia/Jakarta" };
+            const jakartaNow = new Date(now.toLocaleString("en-US", options));
+
+            return {
+                day: jakartaNow.getDate(),
+                month: jakartaNow.getMonth(),
+                year: jakartaNow.getFullYear()
+            };
+        }
+
+        // Fungsi untuk memuat data dari tracker.json
+        async function loadEventsData() {
+            try {
+                const response = await fetch('tracker.json');
+                if (!response.ok) {
+                    throw new Error('Failed to load tracker.json');
+                }
+                const data = await response.json();
+                eventsData = data.events || {};
+                console.log('Events data loaded successfully');
+            } catch (error) {
+                console.error('Error loading events data:', error);
+                // Gunakan data default jika gagal load
+                eventsData = {
+                };
+            }
+        }
+
+        function getEventsForMonth(year, month) {
+            const key = `${year}-${month}`;
+            return eventsData[key] || [];
+        }
+
+        function getEventsForDate(year, month, day) {
+            const monthEvents = getEventsForMonth(year, month);
+            return monthEvents.filter(event => event.date === day);
+        }
+
+        function displayAllEventsForMonth(year, month) {
+            const events = getEventsForMonth(year, month);
+            const eventContainer = document.getElementById('event-container');
+
+            // Nama bulan
+            const monthNames = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+                'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+
+            if (events.length === 0) {
+                eventContainer.innerHTML = `
+                <div class="no-events">Tidak ada event untuk bulan ini</div>
+            `;
+                return;
+            }
+
+            // Urutkan event berdasarkan tanggal
+            const sortedEvents = [...events].sort((a, b) => a.date - b.date);
+
+            let eventHTML = '';
+            eventHTML += '<div class="event-list">';
+
+            sortedEvents.forEach(event => {
+                eventHTML += `
+                <div class="event-item ${event.type}">
+                    <div class="event-date">${event.date}</div>
+                    <div class="event-desc">${event.title}</div>
+                    <span class="event-type-badge ${event.type}">
+                        ${event.type === 'holiday' ? 'Libur' : 'Reguler'}
+                    </span>
+                </div>
+            `;
+            });
+
+            eventHTML += '</div>';
+            eventContainer.innerHTML = eventHTML;
+        }
+
+        function createCalendar(year, month) {
+            const jakartaInfo = updateJakartaDateTime();
+
+            // Jika tahun dan bulan tidak ditentukan, gunakan bulan saat ini
+            if (year === undefined || month === undefined) {
+                year = jakartaInfo.year;
+                month = jakartaInfo.month;
+            }
+
+            currentMonth = month;
+            currentYear = year;
+
+            // Set tanggal yang dipilih ke tanggal 1 jika belum ada yang dipilih
+            if (!selectedDate) {
+                selectedDate = { year, month, day: jakartaInfo.day };
+            }
+
+            const today = new Date();
+            const todayDate = today.getDate();
+            const todayMonth = today.getMonth();
+            const todayYear = today.getFullYear();
+
+            // Tanggal pertama bulan ini
+            const firstDay = new Date(year, month, 1);
+            // Hari terakhir bulan ini
+            const lastDay = new Date(year, month + 1, 0);
+
+            // Nama hari (3 huruf pertama, dimulai Monday)
+            const daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+            // Nama bulan
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'];
+
+            // Tentukan hari pertama bulan (0=Minggu, tapi kita mulai dari Senin=0)
+            let firstDayIndex = firstDay.getDay();
+            // Konversi ke sistem Monday=0
+            firstDayIndex = firstDayIndex === 0 ? 6 : firstDayIndex - 1;
+
+            let calendarHTML = `
+        <div class="calendar-header">
+            <button class="nav-button" id="prev-month">◀</button>
+            <h2>${monthNames[month]} ${year}</h2>
+            <button class="nav-button" id="next-month">▶</button>
+        </div>
+        <div class="calendar-weekdays">
+        `;
+
+            // Tambahkan hari
+            daysOfWeek.forEach(day => {
+                calendarHTML += `<div class="weekday">${day}</div>`;
+            });
+
+            calendarHTML += '</div><div class="calendar-days">';
+
+            // Tambahkan sel kosong untuk hari sebelum bulan dimulai
+            for (let i = 0; i < firstDayIndex; i++) {
+                const prevDate = new Date(year, month, 0 - i);
+                calendarHTML += `<div class="day other-month">${prevDate.getDate()}</div>`;
+            }
+
+            // Tambahkan hari dalam bulan
+            for (let day = 1; day <= lastDay.getDate(); day++) {
+                const dayDate = new Date(year, month, day);
+                let dayClass = 'day';
+
+                // Cek apakah hari Minggu (0 = Minggu)
+                if (dayDate.getDay() === 0) {
+                    dayClass += ' sunday';
+                }
+
+                // Cek apakah hari ini
+                if (day === todayDate && month === todayMonth && year === todayYear) {
+                    dayClass += ' today';
+                }
+
+                // Cek event untuk hari ini
+                const events = getEventsForDate(year, month, day);
+                const hasHoliday = events.some(event => event.type === "holiday");
+                const hasRegular = events.some(event => event.type === "regular");
+
+                if (hasHoliday) {
+                    dayClass += ' has-holiday';
+                } else if (hasRegular) {
+                    dayClass += ' has-regular';
+                }
+
+                calendarHTML += `<div class="${dayClass}" data-day="${day}" data-month="${month}" data-year="${year}">
+                <div>${day}</div>
+            </div>`;
+            }
+
+            // Tambahkan hari setelah bulan berakhir (bulan depan)
+            const totalCells = 42; // 6 baris x 7 hari
+            const daysInMonth = lastDay.getDate();
+            const totalDaysDisplayed = firstDayIndex + daysInMonth;
+            const nextMonthDays = totalCells - totalDaysDisplayed;
+
+            for (let i = 1; i <= nextMonthDays; i++) {
+                calendarHTML += `<div class="day other-month">${i}</div>`;
+            }
+
+            calendarHTML += '</div>';
+
+            document.getElementById('calendar').innerHTML = calendarHTML;
+
+            // Tampilkan SEMUA event untuk bulan ini
+            displayAllEventsForMonth(year, month);
+
+            // Tambahkan event listeners untuk tombol navigasi
+            document.getElementById('prev-month').addEventListener('click', () => {
+                let newMonth = currentMonth - 1;
+                let newYear = currentYear;
+
+                if (newMonth < 0) {
+                    newMonth = 11;
+                    newYear--;
+                }
+
+                createCalendar(newYear, newMonth);
+            });
+
+            document.getElementById('next-month').addEventListener('click', () => {
+                let newMonth = currentMonth + 1;
+                let newYear = currentYear;
+
+                if (newMonth > 11) {
+                    newMonth = 0;
+                    newYear++;
+                }
+
+                createCalendar(newYear, newMonth);
+            });
+
+            // Tambahkan event listener untuk setiap hari (opsional, untuk highlight)
+            document.querySelectorAll('.day:not(.other-month)').forEach(dayElement => {
+                dayElement.addEventListener('click', () => {
+                    const day = parseInt(dayElement.getAttribute('data-day'));
+                    const month = parseInt(dayElement.getAttribute('data-month'));
+                    const year = parseInt(dayElement.getAttribute('data-year'));
+
+                    // Update selected date
+                    selectedDate = { year, month, day };
+
+                    // Update tampilan kalender untuk menghapus seleksi sebelumnya
+                    createCalendar(year, month);
+                });
+            });
+        }
+
+        // Fungsi untuk update waktu (tidak lagi menampilkan tanggal)
+        function updateDateTime() {
+            // Cek jika bulan berubah (tengah malam), update kalender
+            const now = new Date();
+            const options = { timeZone: "Asia/Jakarta" };
+            const jakartaNow = new Date(now.toLocaleString("en-US", options));
+
+            if (jakartaNow.getFullYear() !== currentYear || jakartaNow.getMonth() !== currentMonth) {
+                createCalendar(currentYear, currentMonth);
+            }
+        }
+
+        // Jalankan fungsi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Tunggu data events dimuat terlebih dahulu
+            await loadEventsData();
+
+            const jakartaInfo = updateJakartaDateTime();
+            createCalendar(jakartaInfo.year, jakartaInfo.month);
+
+            // Periksa perubahan bulan setiap menit
+            setInterval(updateDateTime, 60000);
+        });
+    </script>
+</body>
+
+</html>
